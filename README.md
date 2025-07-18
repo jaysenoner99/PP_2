@@ -8,6 +8,19 @@ This repository contains a high-performance implementation of fundamental morpho
 
 The focus of this work is to provide a comprehensive performance analysis, highlighting the architectural trade-offs and scalability characteristics of task-parallel (CPU) versus data-parallel (GPU) approaches for a classic, embarrassingly parallel computer vision problem.
 
+      
+<table>
+  <tr>
+    <td align="center"><strong>Original Image</strong></td>
+    <td align="center"><strong>Processed Image (Closing)</strong></td>
+  </tr>
+  <tr>
+    <td><img src="images/lena_gray.png" alt="Lena Gray" width="100%"></td>
+    <td><img src="output_gpu_parallel_15x15.png" alt="GPU Erosion Result" width="100%"></td>
+  </tr>
+</table>
+
+    
 ## Features
 
 - **Three Distinct Implementations**: Provides a clear comparison between sequential, multi-core CPU, and massively parallel GPU models
