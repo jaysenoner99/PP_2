@@ -15,7 +15,7 @@ The focus of this work is to provide a comprehensive performance analysis, highl
     <td align="center"><strong>Processed Image (Closing)</strong></td>
   </tr>
   <tr>
-    <td><img src="images/lena_gray.png" alt="Lena Gray" width="100%"></td>
+    <td><img src="images/lena_geay.png" alt="Lena Gray" width="100%"></td>
     <td><img src="output_gpu_parallel_15x15.png" alt="GPU Erosion Result" width="100%"></td>
   </tr>
 </table>
