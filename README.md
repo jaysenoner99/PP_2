@@ -46,12 +46,12 @@ To build and run this project, you will need the following installed on your sys
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/your-username/PP_2.git
+   cd PP_2
    ```
 
 2. **Install Python dependencies:**
-   It is recommended to use a virtual environment.
+   It is recommended to use a virtual environment to manage dependencies.
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
