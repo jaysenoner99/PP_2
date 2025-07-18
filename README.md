@@ -12,7 +12,7 @@ The focus of this work is to provide a comprehensive performance analysis, highl
 <table>
   <tr>
     <td align="center"><strong>Original Image</strong></td>
-    <td align="center"><strong>Processed Image (Closing)</strong></td>
+    <td align="center"><strong>Processed Image (Erosion)</strong></td>
   </tr>
   <tr>
     <td><img src="images/lena_geay.png" alt="Lena Gray" width="100%"></td>
