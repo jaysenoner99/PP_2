@@ -1,11 +1,8 @@
-# parallel_morph.py (Revised for Optimized Chaining)
-
 import numpy as np
 import pycuda.autoinit
 import pycuda.driver as cuda
 from pycuda.compiler import SourceModule
 
-# --- CUDA C Kernel (Unchanged) ---
 CUDA_KERNEL = """
 __global__ void morphological_operation(
     const unsigned char* input_image, 
@@ -46,7 +43,6 @@ mod = SourceModule(CUDA_KERNEL)
 _morph_kernel_func = mod.get_function("morphological_operation")
 
 
-# --- Tier 1: Low-Level Kernel Executor ---
 def _execute_gpu_kernel(
     d_input, d_output, d_se, img_w, img_h, se_w, se_h, is_erosion, BLOCK_SIZE
 ):
@@ -73,7 +69,6 @@ def _execute_gpu_kernel(
     )
 
 
-# --- Tier 2: Public Wrapper for a SINGLE Operation ---
 def parallel_morph_op(
     image: np.ndarray, se: np.ndarray, operation: str, block_size=(16, 16, 1)
 ) -> np.ndarray:
@@ -101,7 +96,6 @@ def parallel_morph_op(
     cuda.memcpy_htod(d_input, image)
     cuda.memcpy_htod(d_se, se)
 
-    # Execute kernel
     _execute_gpu_kernel(
         d_input, d_output, d_se, img_w, img_h, se_w, se_h, is_erosion, block_size
     )
@@ -117,7 +111,6 @@ def parallel_morph_op(
     return output_image
 
 
-# --- Tier 3: Optimized Chained Operations ---
 def _chained_op_template(
     image: np.ndarray, se: np.ndarray, is_erosion_first: bool, block_size=(16, 16, 1)
 ) -> np.ndarray:
@@ -131,7 +124,6 @@ def _chained_op_template(
     image = image.astype(np.uint8)
     se = se.astype(np.int32)
 
-    # --- Memory Management ---
     # We need one buffer for the SE and two "ping-pong" buffers for the image
     d_se = cuda.mem_alloc(se.nbytes)
     d_buffer_A = cuda.mem_alloc(image.nbytes)

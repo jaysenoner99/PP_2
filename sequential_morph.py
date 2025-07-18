@@ -19,23 +19,18 @@ def sequential_erosion(image: np.ndarray, se: np.ndarray) -> np.ndarray:
     se_h_radius = se_h // 2
     se_w_radius = se_w // 2
 
-    # Create an output image with the same dimensions, initialized to zeros
     output_image = np.zeros_like(image)
 
-    # Iterate over each pixel of the input image
     for y in range(img_h):
         for x in range(img_w):
-            min_val = 255  # Initialize with max possible grayscale value
+            min_val = 255
 
-            # Iterate over the structuring element
             for j in range(se_h):
                 for i in range(se_w):
-                    if se[j, i] == 1:  # Only consider the '1's in the SE
-                        # Calculate the coordinates in the image
+                    if se[j, i] == 1:
                         ny = y + j - se_h_radius
                         nx = x + i - se_w_radius
 
-                        # Boundary checking
                         if 0 <= ny < img_h and 0 <= nx < img_w:
                             min_val = min(min_val, image[ny, nx])
 
@@ -60,19 +55,15 @@ def sequential_dilation(image: np.ndarray, se: np.ndarray) -> np.ndarray:
     se_h_radius = se_h // 2
     se_w_radius = se_w // 2
 
-    # Create an output image with the same dimensions, initialized to zeros
     output_image = np.zeros_like(image)
 
-    # Iterate over each pixel of the input image
     for y in range(img_h):
         for x in range(img_w):
             max_val = 0
 
-            # Iterate over the structuring element
             for j in range(se_h):
                 for i in range(se_w):
-                    if se[j, i] == 1:  # Only consider the '1's in the SE
-                        # Calculate the coordinates in the image
+                    if se[j, i] == 1:
                         ny = y + j - se_h_radius
                         nx = x + i - se_w_radius
 

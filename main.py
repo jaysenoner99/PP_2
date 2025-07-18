@@ -1,16 +1,11 @@
-# main.py (Simplified Version)
-
 import numpy as np
 from PIL import Image
 import time
 import os
 
-# PyCUDA imports
 import pycuda.autoinit
 import pycuda.driver as cuda
 
-# --- Import your custom functions ---
-# We only need sequential_erosion and the "naive" parallel_morph_op for this version.
 try:
     from sequential_morph import sequential_erosion
     from parallel_morph import parallel_morph_op
@@ -28,7 +23,6 @@ def run_benchmark():
     comparing a sequential CPU version against a parallel GPU version.
     """
     # --- 1. Configuration ---
-    # Change these parameters to test different scenarios
     IMAGE_PATH = "images/lena_gray_512.tif"
     SE_SIZE = 15  # Use an odd number, e.g., 3, 5, 9, 15
     OPERATION = "erosion"  # or 'dilation'
@@ -56,7 +50,6 @@ def run_benchmark():
     print(f"  - Operation: {OPERATION.capitalize()}")
     print("-" * 50)
 
-    # Dictionary to hold results
     results = {}
 
     # --- 3. Sequential CPU Execution ---

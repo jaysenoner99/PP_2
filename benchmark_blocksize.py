@@ -5,10 +5,8 @@ import time
 import pycuda.autoinit
 import pycuda.driver as cuda
 
-# Import the modified parallel functions that accept block_size
 from parallel_morph import parallel_morph_op, parallel_opening, parallel_closing
 
-# We also need the sequential versions to calculate speedup
 from sequential_morph import (
     sequential_erosion,
     sequential_dilation,
@@ -107,11 +105,9 @@ def run_blocksize_benchmark():
             end_gpu.synchronize()
             gpu_time = start_gpu.time_till(end_gpu) * 1e-3
 
-            # Get the corresponding CPU time
             cpu_time = sequential_times[op_name]
             speedup = cpu_time / gpu_time if gpu_time > 0 else float("inf")
 
-            # Store results
             result_row = {
                 "image_size": FIXED_IMAGE_SIZE,
                 "se_size": FIXED_SE_SIZE,
@@ -124,7 +120,6 @@ def run_blocksize_benchmark():
             }
             all_results.append(result_row)
 
-    # 5. Save results to CSV
     print("\n" + "=" * 60)
     print(f"Benchmark complete. Saving results to '{OUTPUT_CSV_FILE}'...")
     try:

@@ -6,11 +6,9 @@ import os
 import csv
 import multiprocessing
 
-# PyCUDA imports
 import pycuda.autoinit
 import pycuda.driver as cuda
 
-# Import all three implementations
 from sequential_morph import (
     sequential_erosion,
     sequential_dilation,
@@ -26,7 +24,6 @@ SE_SIZES = [3, 7, 9, 15]
 OUTPUT_CSV_FILE = "results/benchmark_results_mp.csv"
 
 
-# --- Helper Wrappers for GPU functions ---
 def parallel_erosion_wrapper(img, se):
     return parallel_morph_op(img, se, "erosion")
 
@@ -35,7 +32,6 @@ def parallel_dilation_wrapper(img, se):
     return parallel_morph_op(img, se, "dilation")
 
 
-# --- Operation Mapping (now with 3 implementations per operation) ---
 OPERATIONS = {
     "Erosion": (sequential_erosion, erosion_mp, parallel_erosion_wrapper),
     "Dilation": (sequential_dilation, dilation_mp, parallel_dilation_wrapper),
