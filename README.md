@@ -1,4 +1,4 @@
-# Parallel Morphological Image Processing with CUDA and Python
+# Parallel Morphological Image Processing with pyCUDA and Python Multiprocessing
 
 This repository contains a high-performance implementation of fundamental morphological image processing operations, exploring and comparing different parallel programming models. The project includes:
 
